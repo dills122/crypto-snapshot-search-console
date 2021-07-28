@@ -1,7 +1,7 @@
 export interface Coin {
   name: string;
   symbol: string;
-  link: string;
+  link?: string;
 }
 
 const coins: Coin[] = [

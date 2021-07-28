@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomHttpClientService } from '../core/custom-http-client.service';
 import coins, { Coin } from '../data/stocks';
+import urlUtil from '../util/url-util';
 
 interface CoinData {
   [key: string]: number;
@@ -20,7 +21,7 @@ interface CoinDataResponse {
 })
 export class CoinSnapshotComponent implements OnInit {
   coins = coins;
-  coin: Coin;
+  symbol: string | null;
   defaultCoin: Coin;
   coinData: CoinData | undefined;
   constructor(
@@ -32,13 +33,12 @@ export class CoinSnapshotComponent implements OnInit {
       name: 'DEFAULT',
       link: 'DEFAULT',
     };
-    const symbol = this.route.snapshot.paramMap.get('symbol');
-    this.coin = this.findCoinBySymbol(symbol);
+    this.symbol = this.route.snapshot.paramMap.get('symbol');
   }
 
   ngOnInit(): void {
-    if (!this.isDefault(this.coin)) {
-      this.getCoinData(this.coin);
+    if (this.symbol) {
+      this.getCoinData(this.symbol);
     }
   }
 
@@ -54,8 +54,9 @@ export class CoinSnapshotComponent implements OnInit {
     return coin.name === 'DEFAULT' && coin.symbol === 'DEFAULT';
   }
 
-  getCoinData(coin: Coin) {
-    this.http.get<CoinDataResponse>(coin.link).subscribe((coin) => {
+  getCoinData(symbol: string) {
+    const apiUrl = urlUtil.constructCoinDataUrl(symbol);
+    this.http.get<CoinDataResponse>(apiUrl).subscribe((coin) => {
       this.coinData = coin.data.rates;
       console.log(coin);
     });
