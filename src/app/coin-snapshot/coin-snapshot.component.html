@@ -1,0 +1,10 @@
+<div>
+  <h2>{{coin.name}}</h2>
+  <hr>
+  <h4>Current Exchange Rates for {{coin.symbol}}</h4>
+  <ul *ngFor="let exchangeRate of coinData | keyvalue">
+    <li>
+      {{exchangeRate.key}}: {{exchangeRate.value}}
+    </li>
+  </ul>
+</div>
