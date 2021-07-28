@@ -1,7 +1,8 @@
-<h2>Fiat Currency </h2>
+<h4>Available Currencies</h4>
 <hr>
-<ul *ngFor="let coin of coins">
+<ul *ngFor="let currency of currencies">
   <li>
-    <a routerLink="/coin/{{coin.symbol}}"><span>{{coin.name}} - {{coin.symbol}}</span></a>
+    <a routerLink="/coin/{{currency.symbol}}" [state]="{ name: currency.name }"><span>{{currency.name}} -
+        {{currency.symbol}}</span></a>
   </li>
 </ul>
