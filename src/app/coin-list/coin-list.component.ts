@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { CustomHttpClientService } from '../core/custom-http-client.service';
-import coins from '../data/stocks';
+import { Currency } from '../shared/currency.interface';
+import { SEOService } from '../services/seo.service';
 import { SEOMetaData } from '../shared/meta-data.interface';
 
 interface CurrenciesResponse {
@@ -20,7 +21,7 @@ interface CurrencyObject {
   styleUrls: ['./coin-list.component.scss'],
 })
 export class CoinListComponent implements OnInit {
-  coins = coins;
+  currencies: Currency[] = [];
   private metaData: SEOMetaData = {
     title: 'Fiat to Crypto Exchange Rates',
     description:
@@ -29,43 +30,20 @@ export class CoinListComponent implements OnInit {
   constructor(
     private http: CustomHttpClientService,
     private title: Title,
-    private meta: Meta
+    private seoService: SEOService
   ) {}
 
   ngOnInit(): void {
     this.getCurrencies();
     this.title.setTitle(this.metaData.title);
-    this.meta.updateTag({
-      name: 'description',
-      content: this.metaData.description,
-    });
-
-    // Twitter metadata
-    this.meta.addTag({ name: 'twitter:card', content: 'summary' });
-    // this.meta.addTag({ name: 'twitter:site', content: '@AngularUniv' });
-    this.meta.addTag({
-      name: 'twitter:title',
-      content: this.metaData.description,
-    });
-    this.meta.addTag({
-      name: 'twitter:description',
-      content: this.metaData.description,
-    });
-    this.meta.addTag({
-      name: 'twitter:text:description',
-      content: this.metaData.description,
-    });
-    // this.meta.addTag({
-    //   name: 'twitter:image',
-    //   content: 'https://avatars3.githubusercontent.com/u/16628445?v=3&s=200',
-    // });
+    this.seoService.setAllTags(this.metaData);
   }
 
   getCurrencies() {
     this.http
       .get<CurrenciesResponse>('https://api.coinbase.com/v2/currencies')
       .subscribe((currencies) => {
-        this.coins = currencies.data.map((currency) => {
+        this.currencies = currencies.data.map((currency) => {
           return {
             name: currency.name,
             symbol: currency.id,

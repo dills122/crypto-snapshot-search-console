@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { CustomHttpClientService } from '../core/custom-http-client.service';
-import coins, { Coin } from '../data/stocks';
+import { Currency } from '../shared/currency.interface';
 import urlUtil from '../util/url-util';
 import { SEOMetaData } from '../shared/meta-data.interface';
+import navigationUtil from '../util/navigation-state';
+import { SEOService } from '../services/seo.service';
 
 interface CoinData {
   [key: string]: number;
@@ -22,17 +24,25 @@ interface CoinDataResponse {
   styleUrls: ['./coin-snapshot.component.scss'],
 })
 export class CoinSnapshotComponent implements OnInit {
-  coins = coins;
   symbol: string | null;
-  defaultCoin: Coin;
+  defaultCoin: Currency;
   coinData: CoinData | undefined;
+  name: string | undefined;
+
   private metaData: SEOMetaData;
   constructor(
     private route: ActivatedRoute,
     private http: CustomHttpClientService,
     private title: Title,
-    private meta: Meta
+    private router: Router,
+    private seoService: SEOService
   ) {
+    const navState = navigationUtil.getStateObject(
+      this.router.getCurrentNavigation()
+    );
+    if (navState !== undefined) {
+      this.name = navState['name'];
+    }
     this.defaultCoin = {
       symbol: 'DEFAULT',
       name: 'DEFAULT',
@@ -49,43 +59,8 @@ export class CoinSnapshotComponent implements OnInit {
     if (this.symbol) {
       this.getCoinData(this.symbol);
       this.title.setTitle(this.metaData.title);
-      this.meta.updateTag({
-        name: 'description',
-        content: this.metaData.description,
-      });
-
-      // Twitter metadata
-      this.meta.addTag({ name: 'twitter:card', content: 'summary' });
-      // this.meta.addTag({ name: 'twitter:site', content: '@AngularUniv' });
-      this.meta.addTag({
-        name: 'twitter:title',
-        content: this.metaData.description,
-      });
-      this.meta.addTag({
-        name: 'twitter:description',
-        content: this.metaData.description,
-      });
-      this.meta.addTag({
-        name: 'twitter:text:description',
-        content: this.metaData.description,
-      });
-      // this.meta.addTag({
-      //   name: 'twitter:image',
-      //   content: 'https://avatars3.githubusercontent.com/u/16628445?v=3&s=200',
-      // });
+      this.seoService.setAllTags(this.metaData);
     }
-  }
-
-  findCoinBySymbol(symbol: string | null) {
-    const coin = this.coins.find((coin) => coin.symbol === symbol);
-    if (!coin) {
-      return this.defaultCoin;
-    }
-    return coin;
-  }
-
-  isDefault(coin: Coin) {
-    return coin.name === 'DEFAULT' && coin.symbol === 'DEFAULT';
   }
 
   getCoinData(symbol: string) {
