@@ -1,0 +1,7 @@
+<h2>Current Coins</h2>
+<hr>
+<ul *ngFor="let coin of coins">
+  <li>
+    <a routerLink="/coin/{{coin.symbol}}"><span>{{coin.name}} - {{coin.symbol}}</span></a>
+  </li>
+</ul>
