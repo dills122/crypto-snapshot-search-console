@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "crypto-snapshot-search-console-app": {
+    "currency-exchange-rates-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/crypto-snapshot-search-console-app/browser",
+            "outputPath": "dist/currency-exchange-rates-app/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "crypto-snapshot-search-console-app:build:production"
+              "browserTarget": "currency-exchange-rates-app:build:production"
             },
             "development": {
-              "browserTarget": "crypto-snapshot-search-console-app:build:development"
+              "browserTarget": "currency-exchange-rates-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "crypto-snapshot-search-console-app:build"
+            "browserTarget": "currency-exchange-rates-app:build"
           }
         },
         "test": {
@@ -111,7 +111,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/crypto-snapshot-search-console-app/server",
+            "outputPath": "dist/currency-exchange-rates-app/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
@@ -136,12 +136,12 @@
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "crypto-snapshot-search-console-app:build:development",
-              "serverTarget": "crypto-snapshot-search-console-app:server:development"
+              "browserTarget": "currency-exchange-rates-app:build:development",
+              "serverTarget": "currency-exchange-rates-app:server:development"
             },
             "production": {
-              "browserTarget": "crypto-snapshot-search-console-app:build:production",
-              "serverTarget": "crypto-snapshot-search-console-app:server:production"
+              "browserTarget": "currency-exchange-rates-app:build:production",
+              "serverTarget": "currency-exchange-rates-app:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -155,12 +155,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "crypto-snapshot-search-console-app:build:production",
-              "serverTarget": "crypto-snapshot-search-console-app:server:production"
+              "browserTarget": "currency-exchange-rates-app:build:production",
+              "serverTarget": "currency-exchange-rates-app:server:production"
             },
             "development": {
-              "browserTarget": "crypto-snapshot-search-console-app:build:development",
-              "serverTarget": "crypto-snapshot-search-console-app:server:development"
+              "browserTarget": "currency-exchange-rates-app:build:development",
+              "serverTarget": "currency-exchange-rates-app:server:development"
             }
           },
           "defaultConfiguration": "production"
@@ -168,5 +168,5 @@
       }
     }
   },
-  "defaultProject": "crypto-snapshot-search-console-app"
+  "defaultProject": "currency-exchange-rates-app"
 }

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CoinSnapshotComponent } from './coin-snapshot/coin-snapshot.component';
-import { CoinListComponent } from './coin-list/coin-list.component';
+import { CurrencyExchangeRatesComponent } from './exchange-rates/exchange-rates.component';
+import { CurrencyListComponent } from './currency-list/currency-list.component';
 
 const routes: Routes = [
-  { path: '', component: CoinListComponent },
-  { path: 'coin/:symbol', component: CoinSnapshotComponent },
+  { path: '', component: CurrencyListComponent },
+  { path: 'currency/:symbol', component: CurrencyExchangeRatesComponent },
 ];
 
 @NgModule({
