@@ -16,11 +16,11 @@ interface CurrencyObject {
 }
 
 @Component({
-  selector: 'app-coin-list',
-  templateUrl: './coin-list.component.html',
-  styleUrls: ['./coin-list.component.scss'],
+  selector: 'app-currency-list',
+  templateUrl: './currency-list.component.html',
+  styleUrls: ['./currency-list.component.scss'],
 })
-export class CoinListComponent implements OnInit {
+export class CurrencyListComponent implements OnInit {
   currencies: Currency[] = [];
   private metaData: SEOMetaData = {
     title: 'Fiat to Crypto Exchange Rates',

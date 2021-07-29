@@ -15,7 +15,7 @@ export function app(): express.Express {
   const server = express();
   const distFolder = join(
     process.cwd(),
-    'dist/crypto-snapshot-search-console-app/browser'
+    'dist/currency-exchange-rates-app/browser'
   );
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
     ? 'index.original.html'

@@ -2,7 +2,7 @@
 <hr>
 <ul *ngFor="let currency of currencies">
   <li>
-    <a routerLink="/coin/{{currency.symbol}}" [state]="{ name: currency.name }"><span>{{currency.name}} -
+    <a routerLink="/currency/{{currency.symbol}}" [state]="{ name: currency.name }"><span>{{currency.name}} -
         {{currency.symbol}}</span></a>
   </li>
 </ul>

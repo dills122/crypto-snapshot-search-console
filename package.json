@@ -1,5 +1,5 @@
 {
-  "name": "crypto-snapshot-search-console-app",
+  "name": "currency-exchange-rates-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,10 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run crypto-snapshot-search-console-app:serve-ssr",
-    "serve:ssr": "node dist/crypto-snapshot-search-console-app/server/main.js",
-    "build:ssr": "ng build && ng run crypto-snapshot-search-console-app:server",
-    "prerender": "ng run crypto-snapshot-search-console-app:prerender"
+    "dev:ssr": "ng run currency-exchange-rates-app:serve-ssr",
+    "serve:ssr": "node dist/currency-exchange-rates-app/server/main.js",
+    "build:ssr": "ng build && ng run currency-exchange-rates-app:server",
+    "prerender": "ng run currency-exchange-rates-app:prerender"
   },
   "private": true,
   "dependencies": {

@@ -1,7 +1,7 @@
 <h4>Current Exchange Rates for {{symbol}}</h4>
 <hr>
 <h6>Full Name: {{name ? name: 'Currency'}}</h6>
-<ul *ngFor="let exchangeRate of coinData | keyvalue">
+<ul *ngFor="let exchangeRate of currencyData | keyvalue">
   <li>
     {{exchangeRate.key}}: {{exchangeRate.value | number:'1.0-3'}}
   </li>

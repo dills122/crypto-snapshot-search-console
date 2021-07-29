@@ -8,12 +8,16 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from 'src/app/core/core.module';
-import { CoinListComponent } from './coin-list/coin-list.component';
-import { CoinSnapshotComponent } from './coin-snapshot/coin-snapshot.component';
+import { CurrencyListComponent } from './currency-list/currency-list.component';
+import { CurrencyExchangeRatesComponent } from './exchange-rates/exchange-rates.component';
 import { SEOService } from './services/seo.service';
 
 @NgModule({
-  declarations: [AppComponent, CoinListComponent, CoinSnapshotComponent],
+  declarations: [
+    AppComponent,
+    CurrencyListComponent,
+    CurrencyExchangeRatesComponent,
+  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserTransferStateModule,
